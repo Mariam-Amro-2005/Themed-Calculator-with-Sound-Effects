@@ -1,0 +1,350 @@
+/*  Author: Mariam Amro Ahmed Fathi Seifeldin
+    Date: 25/04/2025    */
+
+:root {
+    --body-background: hsl(222, 26%, 31%);
+    --keypad-background: hsl(223, 31%, 20%);
+    --screen-background:  hsl(224, 36%, 15%);
+    --key-background: hsl(30, 25%, 89%); 
+    --key-shadow: hsl(28, 16%, 65%);
+    --key-background2: hsl(225, 21%, 49%);
+    --key-shadow2: hsl(224, 28%, 35%);
+    --key-background3: hsl(6, 63%, 50%);
+    --key-shadow3: hsl(6, 70%, 34%);
+    --display-text: hsl(0, 0%, 100%);
+    --button-text: hsl(221, 14%, 31%);
+    font-size: 32px;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 700;
+}
+
+body {
+    background-color: var(--body-background);
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-content: center;
+    justify-content: space-between;
+    width: 33%;
+    height: 90%;
+    margin: auto;
+}
+
+.calc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    color: var(--display-text);  
+    padding: 15px;
+    margin-bottom: 20px;
+
+}
+
+.themes {
+    font-size: 0.7rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 5px;
+    width: 200px;
+    align-items: end;
+}
+
+.theme {
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-size: 0.6rem;
+    
+}
+
+.theme-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.theme-toggle .options{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    gap: 25px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: auto;
+}
+
+.toggle {
+    background-color: var(--keypad-background);
+    width: 95%;
+    height: 35px;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    margin: auto;
+    padding: 5px;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    position: relative;
+}
+
+.click-zone {
+    position: absolute;
+    top: 0;
+    width: 30px;
+    height: 100%;
+    cursor: pointer;
+}
+
+.click-zone:nth-child(1) { left: 0; }
+.click-zone:nth-child(2) { left: 30px}
+.click-zone:nth-child(3) { left: 60px}
+
+.slider-knob {
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    background-color: var(--key-background3);
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%) translateX(0%);
+    -webkit-transform: translateY(-50%) translateX(0%);
+    -moz-transform: translateY(-50%) translateX(0%);
+    -ms-transform: translateY(-50%) translateX(0%);
+    -o-transform: translateY(-50%) translateX(0%);
+    transition: transform 0.3s ease;
+    -webkit-transition: transform 0.3s ease;
+    -moz-transition: transform 0.3s ease;
+    -ms-transition: transform 0.3s ease;
+    -o-transition: transform 0.3s ease;
+}
+
+.calc-display {
+    background-color: var(--screen-background);
+    height: 4.5rem;
+    width: 100%;
+    padding: 25px;
+    font-weight: 600;
+    font-size: 2rem;
+    text-align: right;
+    letter-spacing: 1.5px;
+    color: var(--display-text);
+    margin: auto;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    align-content: center;
+    overflow-x: scroll;
+}
+
+.calc-display::-webkit-scrollbar {
+    height: 6px;
+}
+
+.calc-display::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.calc-display::-webkit-scrollbar-thumb {
+    background-color: rgba(100, 100, 100, 0.3);
+    border-radius: 10px;
+    cursor: ew-resize;
+}
+
+
+.calc-body {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 22px;
+    background-color: var(--keypad-background);
+    padding: min(30px, 5%);
+    justify-items: center;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+
+}
+
+.calc-button {
+    padding: 20px;
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-align: center;
+    align-content: center;
+    background-color: var(--key-background);
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    color: var(--button-text);
+    box-shadow: 0px 3px 0px var(--key-shadow);
+    width: 100%;
+    transition: transform 0.1s ease;
+    cursor: pointer;
+    filter: brightness(1);
+    -webkit-filter: brightness(1);
+}
+
+.calc-button:hover {
+    filter: brightness(1.7);
+    -webkit-filter: brightness(1.6);
+    transform: scale(0.9);
+    -webkit-transform: scale(0.95);
+    -moz-transform: scale(0.95);
+    -ms-transform: scale(0.95);
+    -o-transform: scale(0.95);
+}
+
+.reset {
+    grid-column-start: 1;
+    grid-column-end: span 2;
+    font-size: 1.3rem;
+
+}
+
+.equal {
+    grid-column-start: 3;
+    grid-column-end: span 2;
+    color: var(--display-text);
+    background-color: var(--key-background3);
+    box-shadow: 0px 3px 0px var(--key-shadow3);
+    font-size: 1.4rem;
+}
+
+.del {
+    font-size: 1.2rem;
+}
+
+.reset, .del {
+    color: var(--display-text);
+    background-color: var(--key-background2);
+    box-shadow: 0px 3px 0px var(--key-shadow2);
+}
+
+@media screen and (min-width: 375px) and (max-width: 800px) {
+    .calculator {
+        width: 95%;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .calculator {
+        width: 65%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .calculator {
+        width: 55%;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .calculator {
+        width: 33%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    :root {
+        font-size: 25px;
+    }
+
+    .calculator {
+        width: 95%;
+    }
+
+    .calc-body {
+        width: 100%;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+        /* overflow: scroll; */
+    }
+
+    .reset {
+        grid-column-start: 1;
+        grid-column-end: span 2;
+        grid-row-start: 1;
+    }
+    
+    .equal {
+        grid-column-start: 1;
+        grid-column-end: span 3;
+        grid-row-start: -1;
+
+    }
+
+    .del {
+        grid-column-start: 3;
+        grid-column-end: span 1;
+        grid-row-start: 1;
+    }
+
+    .plus {
+        grid-column-start: 3;
+        grid-row-start: 3;
+        order: 8;
+    }
+
+    .minus {
+        grid-column-start: 3;
+        grid-row-start: 4;
+        order: 11;
+    }
+
+    .multiply {
+        grid-column-start: 3;
+        grid-row-start: 5;
+        order: 14;
+    }
+
+    .divide{
+        grid-column-start: 3;
+        grid-row-start: 6;
+        order: 17;
+    }
+
+    .one{
+        grid-column-start: 1;
+        grid-row-start: 5;
+        order: 12;
+    }
+
+    .two{
+        grid-column-start: 2;
+        grid-row-start: 5;
+        order: 12;
+    }
+
+    .four{
+        grid-column-start: 2;
+        grid-row-start: 4;
+        order: 18;
+    }
+
+    .dot{
+        grid-column-start: 2;
+        grid-row-start: 6;
+        order: 18;
+    }
+
+}
